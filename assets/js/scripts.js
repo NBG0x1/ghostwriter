@@ -69,6 +69,9 @@ jQuery(function($) {
                 $newContent.fitVids();
 
                 $ajaxContainer.html($newContent);
+
+		Prism.highlightAll();
+
                 $ajaxContainer.fadeIn(500);
 
                 NProgress.done();
