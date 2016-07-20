@@ -33,7 +33,7 @@ jQuery(function($) {
 
     // Show the index if the url has "page" in it (a simple
     // way of checking if we're on a paginated page.)
-    if (window.location.pathname.indexOf('page') === 1) {
+    if (window.location.pathname.indexOf('page') === 1 || window.location.pathname.indexOf('tag') === 1) {
         $latestPost.hide();
         $postIndex.show();
     }
@@ -51,6 +51,9 @@ jQuery(function($) {
         $.get(State.url, function(result) {
             var $html = $(result);
             var $newContent = $('#ajax-container', $html).contents();
+
+            // Set the title to the requested urls document title
+            document.title = $html.filter('title').text();
 
             $('html, body').animate({'scrollTop': 0});
 
@@ -79,10 +82,14 @@ jQuery(function($) {
                 loading = false;
                 showIndex = false;
             });
+        }).fail(function() {
+            // Request fail
+            NProgress.done();
+            location.reload();
         });
     });
 
-    $('body').on('click', '.js-ajax-link, .pagination a', function(e) {
+    $('body').on('click', '.js-ajax-link, .pagination a, .post-tags a, .post-header a', function(e) {
         e.preventDefault();
 
         if (loading === false) {
@@ -90,6 +97,15 @@ jQuery(function($) {
             var url = $(this).attr('href');
             var title = $(this).attr('title') || null;
 
+            //if url starts with http:// and currentState.url starts with
+            // https://, replace the protocol in url
+            if (url.indexOf("http://", 0) === 0)
+            {
+                var urlNoProt = url.replace(/.*?:\/\//g, "");
+                var curProt = currentState.url.split("/")[0];
+                url = curProt + "//" + urlNoProt;
+            }
+            
             // If the requested url is not the current states url push
             // the new state and make the ajax call.
             if (url !== currentState.url.replace(/\/$/, "")) {

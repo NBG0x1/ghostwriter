@@ -2,21 +2,8 @@
 
 <div class="container">
     {{#post}}
-        <article class="post-container {{post_class}}">
-            <header class="post-header">
-                <h1 class="post-title">{{title}}</h1>
-
-                <p class="post-date">Published <time datetime="{{published_at}}">{{date format="MMMM Do YYYY"}}</time> by <a href="https://plus.google.com/101711965674283402975?rel=author" style="color: #AEADAD;">{{author.name}}</a></p>
-            </header>
-
-            <div class="post-content">
-                {{{content}}}
-
-                {{#if tags}}
-                    <p class="post-tags"><span>Tagged:</span> {{tags}}</p>
-                {{/if}}
-            </div>
-
+{{! No indention to prevent handlebars indenting <pre> tag content}}   
+{{> post-content}}
 	<!-- Disqus Comments -->
     <div class="comments">
         <div id="disqus_thread"></div>
@@ -40,8 +27,5 @@
     <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
 
     </div>
-		
-
-        </article>
     {{/post}}
 </div>
