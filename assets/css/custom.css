@@ -32,3 +32,44 @@
 img.post-featured-image {
   width: 100%;
 }
+
+.post-content pre code::selection {
+    text-shadow: none !important;
+    background: #cbeafb !important;
+}
+
+.post-content pre {
+  letter-spacing: 0;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -moz-font-feature-settings: "liga" on;
+  vertical-align: baseline;
+  font-family: monospace,monospace;
+  min-width: 100%;
+  overflow-x: auto;
+  margin: 1.5em 0 3em;
+  padding: 20px;
+  max-width: 100%;
+  border: 1px solid #000;
+  color: #e5eff5;
+  font-size: 1.2rem;
+  line-height: 1.1em;
+  background: #0e0f11;
+  border-radius: 5px;
+}
+
+.post-content code {
+  font-family: monospace,monospace;
+  padding: 0 5px 2px;
+  font-size: .8em;
+  line-height: 1em;
+  font-weight: 400!important;
+  background: #e5eff5;
+  border-radius: 3px;
+}
+
+.post-content pre code {
+  padding: 0;
+  background: transparent;
+}

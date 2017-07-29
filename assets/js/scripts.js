@@ -73,8 +73,6 @@ jQuery(function($) {
 
                 $ajaxContainer.html($newContent);
 
-		Prism.highlightAll();
-
                 $ajaxContainer.fadeIn(500);
 
                 NProgress.done();
@@ -105,7 +103,7 @@ jQuery(function($) {
                 var curProt = currentState.url.split("/")[0];
                 url = curProt + "//" + urlNoProt;
             }
-            
+
             // If the requested url is not the current states url push
             // the new state and make the ajax call.
             if (url !== currentState.url.replace(/\/$/, "")) {
