@@ -73,6 +73,8 @@ jQuery(function($) {
 
                 $ajaxContainer.html($newContent);
 
+                Prism.highlightAll();
+
                 $ajaxContainer.fadeIn(500);
 
                 NProgress.done();
